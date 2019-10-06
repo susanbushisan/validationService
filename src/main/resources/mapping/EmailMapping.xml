@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.mao196.sms.mapper.EmailMapper">
+    <insert id="insert" useGeneratedKeys="true" >
+        INSERT INTO email VALUES (null,#{email},#{code},#{cTime},#{caseType})
+    </insert>
+
+    <select id="selectEmailInfoByEmail" resultType="top.mao196.sms.entity.QueryCode">
+        SELECT CODE,c_time lastTime FROM email WHERE email = #{email} ORDER BY lastTime DESC LIMIT 0,1
+    </select>
+
+</mapper>
