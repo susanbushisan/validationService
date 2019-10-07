@@ -1,5 +1,6 @@
 package top.mao196.sms.service;
 
+import top.mao196.sms.entity.Constant;
 import top.mao196.sms.entity.Email;
 import top.mao196.sms.entity.QueryCode;
 import top.mao196.sms.entity.Sms;
@@ -16,7 +17,7 @@ public interface SmsService {
      * @param code 验证码
      * @return Sms信息
      */
-    Sms sendSms(String phone, String code);
+    Sms sendSms(String phone, String code, Constant.InvokeWay ways);
 
     /**
      * 获取sms验证码的信息
@@ -38,6 +39,6 @@ public interface SmsService {
      * @param code 验证码
      * @return email信息
      */
-    Email sendEmail(String email, String code);
+    Email sendEmail(String email, String code, Constant.InvokeWay ways);
 
 }

@@ -22,6 +22,8 @@ import java.util.Map;
 @RequestMapping("sms")
 public class SmsController {
 
+    private static final Constant.InvokeWay INVOKE_WAY = Constant.InvokeWay.HTTP;
+
 
     @Autowired
     private SmsService smsService;
@@ -36,7 +38,7 @@ public class SmsController {
         if (!ValidatorUtil.isCheckCode(code)) {
             throw new CodeFormatException("code format can't be analysis");
         }
-        smsService.sendSms(phone, code);
+        smsService.sendSms(phone, code,INVOKE_WAY);
         return new Return(Return.STATUS_OK, "send sms success");
     }
 
@@ -49,7 +51,7 @@ public class SmsController {
         if (!ValidatorUtil.isCheckCode(code)) {
             throw new CodeFormatException("code format can't be analysis");
         }
-        smsService.sendEmail(email, code);
+        smsService.sendEmail(email, code,INVOKE_WAY);
         return new Return(Return.STATUS_OK, "send email success");
     }
 

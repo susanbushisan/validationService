@@ -13,10 +13,7 @@ import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
 import top.mao196.sms.config.AliyunConfig;
 import top.mao196.sms.config.DependencySwitch;
-import top.mao196.sms.entity.ApiRe;
-import top.mao196.sms.entity.Email;
-import top.mao196.sms.entity.QueryCode;
-import top.mao196.sms.entity.Sms;
+import top.mao196.sms.entity.*;
 import top.mao196.sms.mapper.EmailMapper;
 import top.mao196.sms.mapper.SmsMapper;
 import top.mao196.sms.service.SmsService;
@@ -74,7 +71,7 @@ public class SmsServiceImpl implements SmsService {
      * @return Sms信息
      */
     @Override
-    public Sms sendSms(String phone, String code) {
+    public Sms sendSms(String phone, String code, Constant.InvokeWay ways) {
 
         try {
             //发送信息并得到返回结果
@@ -90,7 +87,7 @@ public class SmsServiceImpl implements SmsService {
             }
             if (Objects.equals(apiRe.getMessage(), RETURN_RIGHT_MESSAGE)) {
                 //将所有数据封装
-                Sms data = new Sms(null, phone, code, apiRe.getMessage(), apiRe.getRequestId(), apiRe.getBizId(), new Date(), 1);
+                Sms data = new Sms(null, phone, code, apiRe.getMessage(), apiRe.getRequestId(), apiRe.getBizId(), new Date(), ways.ordinal());
                 if (dependencySwitch.isUsedDatabase()) {
                     //保存到数据库中
                     smsMapper.insert(data);
@@ -177,7 +174,7 @@ public class SmsServiceImpl implements SmsService {
      * @return email信息
      */
     @Override
-    public Email sendEmail(String email, String code) {
+    public Email sendEmail(String email, String code,Constant.InvokeWay ways) {
         //1.发送信息
         //1.1获取邮件html信息
         Context context = new Context();
@@ -196,7 +193,7 @@ public class SmsServiceImpl implements SmsService {
                 javaMailSender.send(mimeMailMessage);
             }
             //2.数据入库
-            Email emailBean = new Email(null, email, code, new Date(), 1);
+            Email emailBean = new Email(null, email, code, new Date(), ways.ordinal());
             if (dependencySwitch.isUsedDatabase()) {
                 emailMapper.insert(emailBean);
             } else {

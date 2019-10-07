@@ -25,4 +25,8 @@ public class Constant {
             return action;
         }
     };
+
+    public enum InvokeWay{
+        HTTP,MQ
+    }
 }
