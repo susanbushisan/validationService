@@ -13,6 +13,7 @@ import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
 import top.mao196.sms.config.AliyunConfig;
 import top.mao196.sms.config.DependencySwitch;
+import top.mao196.sms.config.SmsConfig;
 import top.mao196.sms.entity.*;
 import top.mao196.sms.mapper.EmailMapper;
 import top.mao196.sms.mapper.SmsMapper;
@@ -48,6 +49,9 @@ public class SmsServiceImpl implements SmsService {
 
     @Autowired
     private AliyunConfig aliyunConfig;
+
+    @Autowired
+    private SmsConfig smsConfig;
 
     @Autowired
     private TemplateEngine templateEngine;
@@ -179,15 +183,15 @@ public class SmsServiceImpl implements SmsService {
         //1.1获取邮件html信息
         Context context = new Context();
         context.setVariable("code", code);
-        context.setVariable("projectName", "竞猜网");
+        context.setVariable("projectName", smsConfig.getProjectName());
         String emailString = templateEngine.process("email", context);
         //1.2调用邮件服务发送信息
         try {
             MimeMessage mimeMailMessage = javaMailSender.createMimeMessage();
             MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMailMessage, true);
-            mimeMessageHelper.setFrom(new InternetAddress("Linkmao196@163.com", "竞猜网"));
+            mimeMessageHelper.setFrom(new InternetAddress(smsConfig.getSendEmailAddr(), smsConfig.getSendEmailName()));
             mimeMessageHelper.setTo(email);
-            mimeMessageHelper.setSubject("竞猜网 验证码");
+            mimeMessageHelper.setSubject(smsConfig.getEmailSubject());
             mimeMessageHelper.setText(emailString, true);
             if (dependencySwitch.isEmailService()) {
                 javaMailSender.send(mimeMailMessage);
