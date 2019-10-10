@@ -2,14 +2,14 @@
 <Configuration>
     <Appenders>
         <Console name="Console" target="SYSTEM_OUT">
-            <PatternLayout pattern="[%-d{yyyy-MM-dd HH:mm:ss}]-[%t-%5p]-[%C-%M(%L)]: %m%n"/>
+            <PatternLayout pattern="%highlight{[%-d{yyyy-MM-dd HH:mm:ss}]-[%t-%5p]-[%C-%M(%L)]} : %m%n"/>
         </Console>
         <File name="log" fileName="sms.log" append="false">
         	<PatternLayout pattern="[%-d{yyyy-MM-dd HH:mm:ss}]-[%t-%5p]-[%C-%M(%L)]: %m%n"/>
         </File>
     </Appenders>
     <Loggers>
-        <Root level="INFO">
+        <Root level="info">
             <AppenderRef ref="Console"/>
             <AppenderRef ref="log"/>
         </Root>
