@@ -44,7 +44,7 @@ public class SmsApplicationTests {
     @Test
     public void testSmsInfoService() {
 
-        QueryCode queryCode = smsMapper.selectSmsInfoByPhone("15211287956");
+        QueryCode queryCode = smsMapper.selectSmsInfoByPhone("11111111111");
         System.out.println(queryCode);
     }
 

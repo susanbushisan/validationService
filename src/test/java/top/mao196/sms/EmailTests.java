@@ -41,8 +41,8 @@ public class EmailTests {
         String email = templateEngine.process("email", context);
         MimeMessage mimeMailMessage = javaMailSender.createMimeMessage();
         MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMailMessage, true);
-        mimeMessageHelper.setFrom("linkmao196@163.com");
-        mimeMessageHelper.setTo("497593532@qq.com");
+        mimeMessageHelper.setFrom("1111111111111@163.com");
+        mimeMessageHelper.setTo("41111111111@qq.com");
         mimeMessageHelper.setSubject("This is checkcode email");
         mimeMessageHelper.setText(email, true);
 //        javaMailSender.send(mimeMailMessage);
