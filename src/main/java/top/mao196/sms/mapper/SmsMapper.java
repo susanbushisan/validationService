@@ -3,6 +3,9 @@ package top.mao196.sms.mapper;
 import top.mao196.sms.entity.QueryCode;
 import top.mao196.sms.entity.Sms;
 
+/**
+ * @author susanbushisan
+ */
 public interface SmsMapper {
     /**
      * 插入一条短信验证数据

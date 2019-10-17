@@ -2,7 +2,6 @@ package top.mao196.sms.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import top.mao196.sms.config.DependencySwitch;
 import top.mao196.sms.entity.Constant;
 import top.mao196.sms.entity.QueryCode;
 import top.mao196.sms.entity.Return;

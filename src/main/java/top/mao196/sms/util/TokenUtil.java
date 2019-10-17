@@ -35,6 +35,7 @@ public class TokenUtil {
         if (dependencySwitch.isUsedRedis()) {
             try {
                 List<String> secretList = redisTemplate.opsForList().range(REDIS_SECRET_LIST, 0, -1);
+                assert secretList != null;
                 if (secretList.contains(token)) {
                     return true;
                 }

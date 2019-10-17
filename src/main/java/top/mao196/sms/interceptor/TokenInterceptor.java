@@ -33,18 +33,18 @@ public class TokenInterceptor implements HandlerInterceptor {
     private String rootSecret;
 
     @Override
-    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
         final String token = request.getHeader(TokenUtil.HEADER_TOKEN_NAME);
         if(token == null ||!token.startsWith(TokenUtil.TOKEN_PREFIX)){
-            log.info("can not resolving token header");
+            log.debug("can not resolving token header");
             throw new TokenException("can not resolving token header");
         }
         String reallyToken = token.substring(token.indexOf(" ") + 1);
         if(!TokenUtil.tokenValidate(reallyToken,rootSecret,redisTemplate,dependencySwitch)){
-            log.info("token verification fail, token = " + token);
+            log.debug("token verification fail, token = " + token);
             throw new TokenException("token verification fail");
         }
-        log.info("token verification success, token = " + token);
+        log.debug("token verification success, token = " + token);
         return true;
     }
 

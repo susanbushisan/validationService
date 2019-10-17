@@ -7,6 +7,7 @@ import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
+import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Component;
 
 /**
@@ -15,13 +16,13 @@ import org.springframework.stereotype.Component;
 @Component
 public class ApplicationInit implements CommandLineRunner, ApplicationContextAware {
 
-    ApplicationContext applicationContext;
+    private ApplicationContext applicationContext;
 
     @Autowired
-    DependencySwitch dependencySwitch;
+    private DependencySwitch dependencySwitch;
 
     @Override
-    public void run(String... args) throws Exception {
+    public void run(String... args) {
         DefaultListableBeanFactory defaultListableBeanFactory = (DefaultListableBeanFactory) applicationContext.getAutowireCapableBeanFactory();
         BeanDefinitionBuilder definitionBuilder = BeanDefinitionBuilder.genericBeanDefinition(Consumer.class);
         if(dependencySwitch.isUsedMq()){
@@ -32,7 +33,7 @@ public class ApplicationInit implements CommandLineRunner, ApplicationContextAwa
     }
 
     @Override
-    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+    public void setApplicationContext(@NonNull ApplicationContext applicationContext) throws BeansException {
         this.applicationContext = applicationContext;
     }
 

@@ -15,6 +15,7 @@ public interface SmsService {
      * 发送
      * @param phone 手机号
      * @param code 验证码
+     * @param ways 发送的方式
      * @return Sms信息
      */
     Sms sendSms(String phone, String code, Constant.InvokeWay ways);
@@ -37,6 +38,7 @@ public interface SmsService {
      * 发送email邮件验证码
      * @param email 邮箱
      * @param code 验证码
+     * @param ways 发送的方式
      * @return email信息
      */
     Email sendEmail(String email, String code, Constant.InvokeWay ways);

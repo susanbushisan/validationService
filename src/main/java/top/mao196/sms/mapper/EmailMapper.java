@@ -10,8 +10,8 @@ public interface EmailMapper {
 
     /**
      * 插入邮箱验证码数据
-     * @param email
-     * @return
+     * @param email 包含email信息
+     * @return 受影响的行数
      */
     int insert(Email email);
 

@@ -24,9 +24,16 @@ public class Constant {
         public String getAction() {
             return action;
         }
-    };
+    }
 
     public enum InvokeWay{
-        HTTP,MQ
+        /**
+         * 使用http协议操作
+         */
+        HTTP,
+        /**
+         * 使用消息队列操作
+         */
+        MQ
     }
 }
