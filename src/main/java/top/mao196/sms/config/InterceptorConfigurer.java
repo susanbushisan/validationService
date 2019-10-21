@@ -14,6 +14,12 @@ import top.mao196.sms.interceptor.TokenInterceptor;
 @Configuration
 public class InterceptorConfigurer implements WebMvcConfigurer {
 
+    static final   String [] TOKEN_PATH = {
+            "/sms/email",
+            "/sms/sms",
+            "/sms/checkInfo"
+    };
+
     @Bean
     public TokenInterceptor getTokenInterceptor() {
 
@@ -23,7 +29,7 @@ public class InterceptorConfigurer implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
 
-        registry.addInterceptor(getTokenInterceptor()).addPathPatterns("/**");
+        registry.addInterceptor(getTokenInterceptor()).addPathPatterns(TOKEN_PATH);
     }
 
 }

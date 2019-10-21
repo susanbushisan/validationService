@@ -40,10 +40,11 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler({Exception.class})
-    public Return handleException(Exception e) {
+    public void handleException(Exception e) throws Exception {
 
         log.warn("unknown exception," + e.getMessage(), e);
-        return new Return(Return.STATUS_SERVICEERR, e.getMessage());
+        throw e;
+//        return new Return(Return.STATUS_SERVICEERR, e.getMessage());
     }
 
 }
