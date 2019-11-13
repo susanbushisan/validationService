@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import top.mao196.sms.entity.Return;
 import top.mao196.sms.service.ex.*;
 
+import javax.servlet.ServletException;
+
 
 /**
  * 全局处理异常
@@ -39,12 +41,10 @@ public class GlobalExceptionHandler {
 
     }
 
-    @ExceptionHandler({Exception.class})
-    public void handleException(Exception e) throws Exception {
-
-        log.warn("unknown exception," + e.getMessage(), e);
+    @ExceptionHandler({ServletException.class})
+    public void handleException(ServletException e) throws ServletException {
         throw e;
-//        return new Return(Return.STATUS_SERVICEERR, e.getMessage());
     }
+
 
 }

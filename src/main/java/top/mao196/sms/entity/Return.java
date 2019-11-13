@@ -6,11 +6,11 @@ package top.mao196.sms.entity;
  */
 public class Return {
 
-	public static final Integer STATUS_OK = 200;
-	public static final Integer STATUS_PARMERR = 400;
-	public static final Integer STATUS_AUTHORIZATION = 401;
-	public static final Integer STATUS_APIERR = 403;
-	public static final Integer STATUS_SERVICEERR = 500;
+		public static final Integer STATUS_OK = 200;
+		public static final Integer STATUS_PARMERR = 400;
+		public static final Integer STATUS_AUTHORIZATION = 401;
+		public static final Integer STATUS_APIERR = 403;
+		public static final Integer STATUS_SERVICEERR = 500;
 
 	private Integer status;
 	private String message;

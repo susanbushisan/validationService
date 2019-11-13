@@ -26,22 +26,17 @@ public class TokenUtil {
      * @param token token
      * @return true为验证通过
      */
-    public static boolean tokenValidate(String token, String rootSecret, RedisTemplate<String, String> redisTemplate , DependencySwitch dependencySwitch) {
+    public static boolean tokenValidate(String token, String rootSecret, RedisTemplate<String, String> redisTemplate, DependencySwitch dependencySwitch) {
 
         token = token.trim();
         if (Objects.equals(token, rootSecret)) {
             return true;
         }
         if (dependencySwitch.isUsedRedis()) {
-            try {
-                List<String> secretList = redisTemplate.opsForList().range(REDIS_SECRET_LIST, 0, -1);
-                assert secretList != null;
-                if (secretList.contains(token)) {
-                    return true;
-                }
-            } catch (Exception e) {
-                log.info("redis not running with this config, stop to use redis", e);
-                dependencySwitch.setUsedRedis(false);
+            List<String> secretList = redisTemplate.opsForList().range(REDIS_SECRET_LIST, 0, -1);
+            assert secretList != null;
+            if (secretList.contains(token)) {
+                return true;
             }
         }
         return false;

@@ -68,4 +68,16 @@ public class DependencySwitch {
         this.smsService = smsService;
     }
 
+    @Override
+    public String toString() {
+
+        return "\nDependencySwitch{" +
+                "\n\t 使用redis = " + usedRedis +
+                "\n\t 使用消息队列 = " + usedMq +
+                "\n\t 使用数据库存储 = " + usedDatabase +
+                "\n\t 开启邮件验证码功能 = " + emailService +
+                "\n\t 开启短信验证码功能 = " + smsService +
+                "\n}";
+    }
+
 }
